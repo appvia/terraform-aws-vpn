@@ -92,7 +92,6 @@ When adding a new group to SSO, there are following steps to complete:
 
 AWS Blog: [AWS SSO and AWS Client VPN setup](https://aws.amazon.com/blogs/networking-and-content-delivery/using-aws-sso-with-aws-client-vpn-for-authentication-and-authorization/)
 AWS Docs: [SAML-based IDP configuration](https://docs.aws.amazon.com/vpn/latest/clientvpn-admin/federated-authentication.html)
-Appvia's SSO processes: [IAM Management](https://appvia.atlassian.net/wiki/spaces/SE/pages/928546817/Identity+Access+Management)
 
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
@@ -153,3 +152,4 @@ Appvia's SSO processes: [IAM Management](https://appvia.atlassian.net/wiki/space
 | <a name="output_client_configuration"></a> [client\_configuration](#output\_client\_configuration) | VPN Client Configuration data. |
 | <a name="output_vpn_endpoint_dns_name"></a> [vpn\_endpoint\_dns\_name](#output\_vpn\_endpoint\_dns\_name) | The DNS Name of the Client VPN Endpoint Connection. |
 <!-- END_TF_DOCS -->
+
