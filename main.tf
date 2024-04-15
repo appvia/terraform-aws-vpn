@@ -7,7 +7,7 @@ locals {
 ## Provision the VPC for VPN
 module "vpc" {
   source  = "appvia/network/aws"
-  version = "0.1.3"
+  version = "0.2.1"
 
   name                   = var.name
   availability_zones     = var.availability_zones
