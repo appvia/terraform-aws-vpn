@@ -61,4 +61,6 @@ module "client_vpn" {
       target_vpc_subnet_id   = subnet.id
     }
   ]
+
+  depends_on = [module.vpc]
 }
