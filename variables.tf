@@ -8,6 +8,12 @@ variable "authorization_rules" {
   }))
 }
 
+variable "enable_vpn" {
+  description = "Whether to enable and deploy the VPN (useful do to dependency of this module)"
+  type        = bool
+  default     = false
+}
+
 variable "saml_provider_document" {
   description = "Document for the SAML provider"
   type        = string
@@ -41,20 +47,15 @@ variable "tags" {
   type        = map(string)
 }
 
-variable "network" {
-  description = "Network configuration for the VPN"
-  type = object({
-    availability_zones      = optional(number, 2)
-    ipam_pool_id            = optional(string, null)
-    name                    = optional(string, "vpn")
-    private_subnet_netmasks = optional(number, 24)
-    public_subnet_netmasks  = optional(number, 24)
-    public_subnet_ids       = optional(list(string), null)
-    transit_gateway_id      = optional(string, null)
-    vpc_id                  = optional(string, null)
-    vpc_cidr                = optional(string, null)
-    vpc_netmask             = optional(number, null)
-  })
+variable "vpc_id" {
+  description = "ID of the VPC to use for the VPN"
+  type        = string
+}
+
+variable "public_subnet_ids" {
+  description = "IDs of the public subnets to use for the VPN"
+  type        = list(string)
+  default     = []
 }
 
 variable "vpn_log_retention" {

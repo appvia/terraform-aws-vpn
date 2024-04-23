@@ -56,12 +56,6 @@ variable "transit_gateway_id" {
   type        = string
 }
 
-variable "vpc_cidr" {
-  description = "CIDR block for the VPC, when not using IPAM"
-  type        = string
-  default     = "10.90.0.0/21"
-}
-
 variable "vpc_netmask" {
   description = "Netmask length for the VPN VPC, when using IPAM"
   type        = number
@@ -82,6 +76,7 @@ variable "vpn_log_stream_name" {
 variable "name" {
   description = "Name of the VPN"
   type        = string
+  default     = "vpn"
 }
 
 variable "vpn_org_name" {
