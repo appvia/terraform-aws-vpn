@@ -1,4 +1,4 @@
-variable "authorizations_rules" {
+variable "authorization_rules" {
   description = "Authorization rules for the VPN"
   type = list(object({
     access_group_id     = string
@@ -6,11 +6,6 @@ variable "authorizations_rules" {
     name                = string
     target_network_cidr = string
   }))
-}
-
-variable "availability_zones" {
-  description = "Amount of availability zones to use for the VPC"
-  type        = number
 }
 
 variable "saml_provider_document" {
@@ -41,51 +36,23 @@ variable "client_cidr" {
   default     = "172.16.0.0/16"
 }
 
-variable "enable_ipam" {
-  description = "Enable IPAM for the VPC"
-  type        = bool
-  default     = false
-}
-
-variable "enable_transit_gateway" {
-  description = "Enable transit gateway for the VPC"
-  type        = bool
-  default     = true
-}
-
-variable "ipam_pool_id" {
-  description = "The ID of the IPAM pool to use for the VPC"
-  type        = string
-  default     = null
-}
-
-variable "private_subnet_netmask" {
-  description = "Netmask length for the private subnets"
-  type        = number
-}
-
 variable "tags" {
   description = "Tags to apply to all resources"
   type        = map(string)
 }
 
-variable "transit_gateway_id" {
-  description = "ID of the transit gateway to use for the VPC"
-  type        = string
-  default     = ""
-}
-
-variable "vpc_cidr" {
-  description = "CIDR block for the VPC, when not using IPAM"
-  type        = string
-  default     = null
-}
-
-variable "vpc_netmask" {
-  description = "Netmask length for the VPN VPC, when using IPAM"
-  type        = number
-  default     = 0
-
+variable "network" {
+  description = "Network configuration for the VPN"
+  type = object({
+    availability_zones      = optional(number, 2)
+    ipam_pool_id            = optional(string, null)
+    name                    = optional(string, "vpn")
+    private_subnet_netmasks = optional(number, 24)
+    public_subnet_netmasks  = optional(number, 24)
+    transit_gateway_id      = string
+    vpc_cidr                = optional(string, null)
+    vpc_netmask             = optional(number, null)
+  })
 }
 
 variable "vpn_log_retention" {
