@@ -2,6 +2,7 @@
 
 ## Provision the VPC for VPN
 module "vpc" {
+  count   = local.enable_vpc_creation ? 1 : 0
   source  = "appvia/network/aws"
   version = "0.3.0"
 
@@ -38,7 +39,8 @@ module "client_vpn" {
   source  = "cloudposse/ec2-client-vpn/aws"
   version = "1.0.0"
 
-  associated_subnets             = values(module.vpc.public_subnet_id_by_az)
+  additional_routes              = local.additional_routes
+  associated_subnets             = local.associated_subnets
   authentication_type            = "federated-authentication"
   authorization_rules            = var.authorization_rules
   client_cidr                    = var.client_cidr
@@ -53,14 +55,4 @@ module "client_vpn" {
   split_tunnel                   = true
   tags                           = var.tags
   vpc_id                         = local.vpc_id
-
-  additional_routes = [
-    for subnet in module.vpc.public_subnet_attributes_by_az : {
-      description            = "Route to all internal services"
-      destination_cidr_block = "10.0.0.0/8"
-      target_vpc_subnet_id   = subnet.id
-    }
-  ]
-
-  depends_on = [module.vpc]
 }

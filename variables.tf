@@ -49,7 +49,9 @@ variable "network" {
     name                    = optional(string, "vpn")
     private_subnet_netmasks = optional(number, 24)
     public_subnet_netmasks  = optional(number, 24)
+    public_subnet_ids       = optional(list(string), null)
     transit_gateway_id      = string
+    vpc_id                  = optional(string, null)
     vpc_cidr                = optional(string, null)
     vpc_netmask             = optional(number, null)
   })
