@@ -38,7 +38,7 @@ module "client_vpn" {
   source  = "cloudposse/ec2-client-vpn/aws"
   version = "1.0.0"
 
-  associated_subnets             = module.vpc.public_subnet_ids
+  associated_subnets             = local.public_subnet_ids
   authentication_type            = "federated-authentication"
   authorization_rules            = var.authorization_rules
   client_cidr                    = var.client_cidr
