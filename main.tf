@@ -7,7 +7,7 @@ locals {
 ## Provision the VPC for VPN
 module "vpc" {
   source  = "appvia/network/aws"
-  version = "0.1.3"
+  version = "0.3.0"
 
   name                   = var.name
   availability_zones     = var.availability_zones
@@ -41,7 +41,7 @@ module "client_vpn" {
   source  = "cloudposse/ec2-client-vpn/aws"
   version = "1.0.0"
 
-  associated_subnets             = module.vpc.public_subnet_list
+  associated_subnets             = module.vpc.public_subnet_ids
   authentication_type            = "federated-authentication"
   authorization_rules            = var.authorizations_rules
   client_cidr                    = var.client_cidr

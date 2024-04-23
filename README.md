@@ -112,7 +112,7 @@ When adding a new group to SSO, there are following steps to complete:
 | Name | Source | Version |
 |------|--------|---------|
 | <a name="module_client_vpn"></a> [client\_vpn](#module\_client\_vpn) | cloudposse/ec2-client-vpn/aws | 1.0.0 |
-| <a name="module_vpc"></a> [vpc](#module\_vpc) | appvia/network/aws | 0.1.3 |
+| <a name="module_vpc"></a> [vpc](#module\_vpc) | appvia/network/aws | 0.3.0 |
 
 ## Resources
 
