@@ -27,4 +27,5 @@ output "vpn_endpoint_dns_name" {
 output "client_configuration" {
   value       = module.client_vpn.client_configuration
   description = "VPN Client Configuration data."
+  sensitive   = true
 }
