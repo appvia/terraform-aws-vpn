@@ -38,7 +38,7 @@ locals {
   team_authorization_rules = {
     "administrators" = [
       {
-        access_group_id     = data.aws_identitystore_group.groups["Cloud Admins"].group_id
+        access_group_id     = data.aws_identitystore_group.groups["Cloud Administrators"].group_id
         description         = "Allow VPN access to all internal services for Cloud Admin users"
         name                = "cloud-admin-allow-all"
         target_network_cidr = local.networks.all-internal
@@ -66,6 +66,24 @@ locals {
   ])
 }
 
+## Provision the VPC for VPN
+module "vpc" {
+  source  = "appvia/network/aws"
+  version = "0.3.0"
+
+  availability_zones     = var.availability_zones
+  enable_ipam            = var.ipam_pool_id != "" ? true : false
+  enable_transit_gateway = var.transit_gateway_id != "" ? true : false
+  ipam_pool_id           = var.ipam_pool_id
+  name                   = var.name
+  private_subnet_netmask = var.private_subnet_netmask
+  public_subnet_netmask  = var.public_subnet_netmask
+  tags                   = var.tags
+  transit_gateway_id     = var.transit_gateway_id
+  vpc_netmask            = var.vpc_netmask
+}
+
+
 ## Provision the AWS VPN
 module "vpn" {
   source = "../../"
@@ -78,18 +96,11 @@ module "vpn" {
   saml_provider_portal_document = file("${path.module}/metadata/saml_portal.xml")
   saml_provider_portal_name     = var.saml_provider_portal_name
   tags                          = var.tags
+  public_subnet_ids             = module.vpc.public_subnet_ids
   vpn_log_retention             = var.vpn_log_retention
   vpn_log_stream_name           = var.vpn_log_stream_name
   vpn_org_name                  = var.vpn_org_name
+  vpc_id                        = module.vpc.vpc_id
 
-  network = {
-    availability_zones      = var.availability_zones
-    ipam_pool_id            = var.ipam_pool_id
-    name                    = var.name
-    private_subnet_netmasks = var.private_subnet_netmask
-    public_subnet_netmasks  = var.public_subnet_netmask
-    transit_gateway_id      = var.transit_gateway_id
-    vpc_netmask             = var.vpc_netmask
-    vpc_cidr                = var.vpc_cidr
-  }
+  depends_on = [module.vpc]
 }

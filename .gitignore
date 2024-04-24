@@ -30,3 +30,9 @@ terraform.rc
 .DS_Store
 todo.md
 
+# SAML files 
+AWS_Client_VPN-saml-metadata.xml
+AWS_VPN_Portal-saml-metadata.xml
+
+# Appvia test files 
+appvia.tfvars

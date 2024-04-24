@@ -112,7 +112,6 @@ When adding a new group to SSO, there are following steps to complete:
 | Name | Source | Version |
 |------|--------|---------|
 | <a name="module_client_vpn"></a> [client\_vpn](#module\_client\_vpn) | cloudposse/ec2-client-vpn/aws | 1.0.0 |
-| <a name="module_vpc"></a> [vpc](#module\_vpc) | appvia/network/aws | 0.3.0 |
 
 ## Resources
 
@@ -127,13 +126,15 @@ When adding a new group to SSO, there are following steps to complete:
 |------|-------------|------|---------|:--------:|
 | <a name="input_authorization_rules"></a> [authorization\_rules](#input\_authorization\_rules) | Authorization rules for the VPN | <pre>list(object({<br>    access_group_id     = string<br>    description         = string<br>    name                = string<br>    target_network_cidr = string<br>  }))</pre> | n/a | yes |
 | <a name="input_name"></a> [name](#input\_name) | Name of the VPN | `string` | n/a | yes |
-| <a name="input_network"></a> [network](#input\_network) | Network configuration for the VPN | <pre>object({<br>    availability_zones      = optional(number, 2)<br>    ipam_pool_id            = optional(string, null)<br>    name                    = optional(string, "vpn")<br>    private_subnet_netmasks = optional(number, 24)<br>    public_subnet_netmasks  = optional(number, 24)<br>    transit_gateway_id      = string<br>    vpc_cidr                = optional(string, null)<br>    vpc_netmask             = optional(number, null)<br>  })</pre> | n/a | yes |
 | <a name="input_saml_provider_document"></a> [saml\_provider\_document](#input\_saml\_provider\_document) | Document for the SAML provider | `string` | n/a | yes |
 | <a name="input_saml_provider_portal_document"></a> [saml\_provider\_portal\_document](#input\_saml\_provider\_portal\_document) | Document for the SAML provider portal | `string` | n/a | yes |
 | <a name="input_tags"></a> [tags](#input\_tags) | Tags to apply to all resources | `map(string)` | n/a | yes |
+| <a name="input_vpc_id"></a> [vpc\_id](#input\_vpc\_id) | ID of the VPC to use for the VPN | `string` | n/a | yes |
 | <a name="input_vpn_log_stream_name"></a> [vpn\_log\_stream\_name](#input\_vpn\_log\_stream\_name) | Name of the CloudWatch log stream for the VPN | `string` | n/a | yes |
 | <a name="input_vpn_org_name"></a> [vpn\_org\_name](#input\_vpn\_org\_name) | Name of the organization for the VPN | `string` | n/a | yes |
 | <a name="input_client_cidr"></a> [client\_cidr](#input\_client\_cidr) | CIDR block for the VPN clients | `string` | `"172.16.0.0/16"` | no |
+| <a name="input_enable_vpn"></a> [enable\_vpn](#input\_enable\_vpn) | Whether to enable and deploy the VPN (useful do to dependency of this module) | `bool` | `false` | no |
+| <a name="input_public_subnet_ids"></a> [public\_subnet\_ids](#input\_public\_subnet\_ids) | IDs of the public subnets to use for the VPN | `list(string)` | `[]` | no |
 | <a name="input_saml_provider_name"></a> [saml\_provider\_name](#input\_saml\_provider\_name) | Name of the SAML provider | `string` | `"Client_VPN"` | no |
 | <a name="input_saml_provider_portal_name"></a> [saml\_provider\_portal\_name](#input\_saml\_provider\_portal\_name) | Name of the SAML provider portal | `string` | `"Client_VPN_Portal"` | no |
 | <a name="input_vpn_log_retention"></a> [vpn\_log\_retention](#input\_vpn\_log\_retention) | Number of days to retain VPN logs | `number` | `7` | no |
@@ -143,9 +144,5 @@ When adding a new group to SSO, there are following steps to complete:
 | Name | Description |
 |------|-------------|
 | <a name="output_client_configuration"></a> [client\_configuration](#output\_client\_configuration) | VPN Client Configuration data. |
-| <a name="output_private_subnet_ids"></a> [private\_subnet\_ids](#output\_private\_subnet\_ids) | The IDs of the private subnets. |
-| <a name="output_public_subnet_attributes_by_az"></a> [public\_subnet\_attributes\_by\_az](#output\_public\_subnet\_attributes\_by\_az) | The attributes of the public subnets by availability zone. |
-| <a name="output_public_subnet_ids"></a> [public\_subnet\_ids](#output\_public\_subnet\_ids) | The IDs of the public subnets. |
-| <a name="output_vpc_id"></a> [vpc\_id](#output\_vpc\_id) | The ID of the VPC. |
 | <a name="output_vpn_endpoint_dns_name"></a> [vpn\_endpoint\_dns\_name](#output\_vpn\_endpoint\_dns\_name) | The DNS Name of the Client VPN Endpoint Connection. |
 <!-- END_TF_DOCS -->
