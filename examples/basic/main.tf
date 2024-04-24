@@ -81,6 +81,11 @@ module "vpc" {
   tags                   = var.tags
   transit_gateway_id     = var.transit_gateway_id
   vpc_netmask            = var.vpc_netmask
+
+  transit_gateway_routes = {
+    private = "10.0.0.0/8"
+    public  = "10.0.0.0/8"
+  }
 }
 
 
