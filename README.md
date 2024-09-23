@@ -124,7 +124,7 @@ When adding a new group to SSO, there are following steps to complete:
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_authorization_rules"></a> [authorization\_rules](#input\_authorization\_rules) | Authorization rules for the VPN | <pre>list(object({<br>    access_group_id     = string<br>    description         = string<br>    name                = string<br>    target_network_cidr = string<br>  }))</pre> | n/a | yes |
+| <a name="input_authorization_rules"></a> [authorization\_rules](#input\_authorization\_rules) | Authorization rules for the VPN | <pre>list(object({<br/>    access_group_id     = string<br/>    description         = string<br/>    name                = string<br/>    target_network_cidr = string<br/>  }))</pre> | n/a | yes |
 | <a name="input_name"></a> [name](#input\_name) | Name of the VPN | `string` | n/a | yes |
 | <a name="input_saml_provider_document"></a> [saml\_provider\_document](#input\_saml\_provider\_document) | Document for the SAML provider | `string` | n/a | yes |
 | <a name="input_saml_provider_portal_document"></a> [saml\_provider\_portal\_document](#input\_saml\_provider\_portal\_document) | Document for the SAML provider portal | `string` | n/a | yes |
