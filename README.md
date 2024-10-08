@@ -1,4 +1,6 @@
-# Terraform AWS VPN
+<img src=appvia_banner.jpg width=800></img>
+
+# Description
 
 This repository creates an AWS Client VPN Endpoint for the AWS Organization, which is connected to the AWS Transit Gateway.
 
