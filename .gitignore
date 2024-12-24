@@ -5,6 +5,9 @@
 *.tfstate
 *.tfstate.*
 
+# terraform lock file
+.terraform.lock.hcl
+
 # Crash log files
 crash.log
 crash.*.log
@@ -30,9 +33,15 @@ terraform.rc
 .DS_Store
 todo.md
 
-# SAML files 
-AWS_Client_VPN-saml-metadata.xml
-AWS_VPN_Portal-saml-metadata.xml
+# Ignore vim swap files
+*.swp
+*.swo
 
-# Appvia test files 
-appvia.tfvars
+# Ignore meld diff files
+*.orig
+*.backup
+*.rej
+
+# Ignore lambda zip files and build directories
+*.zip
+builds/
