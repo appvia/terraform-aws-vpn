@@ -18,7 +18,7 @@ resource "aws_iam_saml_provider" "vpn_portal" {
 module "client_vpn" {
   count   = var.enable_vpn ? 1 : 0
   source  = "cloudposse/ec2-client-vpn/aws"
-  version = "1.0.0"
+  version = "1.0.1"
 
   additional_routes              = local.additional_routes
   associated_subnets             = var.public_subnet_ids
