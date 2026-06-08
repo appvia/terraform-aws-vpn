@@ -69,11 +69,11 @@ locals {
 ## Provision the VPC for VPN
 module "vpc" {
   source  = "appvia/network/aws"
-  version = "0.3.0"
+  version = "0.6.14"
 
   availability_zones     = var.availability_zones
-  enable_ipam            = var.ipam_pool_id != "" ? true : false
-  enable_transit_gateway = var.transit_gateway_id != "" ? true : false
+  # enable_ipam            = var.ipam_pool_id != "" ? true : false
+  # enable_transit_gateway = var.transit_gateway_id != "" ? true : false
   ipam_pool_id           = var.ipam_pool_id
   name                   = var.name
   private_subnet_netmask = var.private_subnet_netmask
