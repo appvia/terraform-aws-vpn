@@ -71,7 +71,7 @@ module "vpc" {
   source  = "appvia/network/aws"
   version = "0.6.14"
 
-  availability_zones     = var.availability_zones
+  availability_zones = var.availability_zones
   # enable_ipam            = var.ipam_pool_id != "" ? true : false
   # enable_transit_gateway = var.transit_gateway_id != "" ? true : false
   ipam_pool_id           = var.ipam_pool_id
